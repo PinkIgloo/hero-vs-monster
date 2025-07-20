@@ -831,6 +831,9 @@ function effectTicker(entity) {
         logMessage(`${getEntityEmoji(entity, 'effectDamage')} ${entity.name} took ${effect.damage} damage from effect`);
         logMessage(`${getEntityEmoji(entity, 'health')} ${entity.name} has ${entity.health} health remaining`);
     }
+    if (effect.debuff !== 0 && effect.active && entity.health > 0) {  
+        effect.duration --;
+    }
 
     if (effect.duration <= 0 && effect.name !== null && effect.name !== 'None') {
 
