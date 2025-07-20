@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Hero vs Monster</title>
+        <link rel="icon" href="data:,">
+        <link rel="stylesheet" href="style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+    </head>
+
+    <body>
+        <button id="themeToggle">Light ~ Dark</button>
+        <main class="game-wrapper">
+            <section class="player-panel">
+                <h2 id="characterName">Heroes</h2>
+                <button id="mageBtn">Mage</button>
+                <button id="warriorBtn">Warrior</button>
+                <button id="rogueBtn">Rogue</button>
+                <div id="characterStatusEffect" class="status-display"></div>
+                <img id="characterImage" src="images/startingPartyImage.png" alt="Select Character" width="200">
+                <p id="characterFlavor"></p>
+                <div id="statsDisplay" class="stats-row">
+                    <span id="characterHealth"></span>
+                    <span id="characterMana"></span>
+                </div>
+            </section>
+            <section class="game-panel">
+                <h1>Hero vs Monster</h1>
+                <div id="playerMessage" class="game-message">Ready to adventure? Select a hero and enter the dungeon to begin!</div>
+                <div id="gameMessage" class="game-panel-message"></div>
+                <div id="attackButtonsContainer"></div>
+                <p id="descriptionBox" class="status-description"></p>
+                <button id="nextTurnBtn" style="display: none;">▶️ Next Turn</button>
+                <button id="print" style="display: none;">Print Battle Log</button>
+                <button id="playAgain" style="display: none;">Play again?</button>
+                <section class="battle-log-section">
+                    <button id="LogToggle">Show Battle Log</button>
+                    <div id="battleLog" class="battle-log" style="display: none;"></div>
+                </section>
+            </section>
+            <section class="computer-panel">
+                <h2 id="monsterName">Monster</h2>
+                <button id="enterDungeonBtn">Enter Dungeon</button>
+                <div id="monsterStatusEffect" class="status-display"></div>
+                <img id="monsterImage" src="images/dungeonDoor.png" alt="Monster appears" width = "200">
+                <p id="monsterFlavor"></p>
+                <p id="monsterHealth"></p>
+                <p id="monsterStatusEffect"></p>
+            </section>
+        </main>
+        <script defer src="script.js"></script>
+    </body>
+</html>

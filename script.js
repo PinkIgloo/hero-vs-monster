@@ -1,0 +1,971 @@
+// light and dark theme is a must have!
+const themeToggle = document.getElementById('themeToggle');
+themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    
+// save preference
+    if (document.body.classList.contains('dark-mode')) {
+      localStorage.setItem('theme', 'dark');
+    } else {
+      localStorage.setItem('theme', 'light');
+    }
+});
+document.getElementById('LogToggle').addEventListener('click', () => {
+  const log = document.getElementById('battleLog');
+  const toggleBtn = document.getElementById('LogToggle');
+
+  if (log.style.display === 'none') {
+    log.style.display = 'block';
+    toggleBtn.textContent = 'Hide Battle Log';
+
+    // Scroll to bottom after rendering
+    requestAnimationFrame(() => {
+      log.scrollTop = log.scrollHeight;
+    });
+
+  } else {
+    log.style.display = 'none';
+    toggleBtn.textContent = 'Show Battle Log';
+  }
+});
+// check saved preference
+window.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme');
+
+    if (savedTheme === 'dark') {
+      document.body.classList.add('dark-mode');
+    }
+});
+// Game data
+const gameData = {
+    // arrays
+    characters:[
+        {
+            id: 'mageBtn',
+            role: 'Mage',
+            name: 'Mage Marian',
+            type: 'character',
+            baseMana: 210,
+            baseHealth: 80,
+            mana: 210, 
+            health: 80, 
+            alive: true,
+            image: 'images/femaleMage.png',
+            flavorText: 'Self trained by trial and error - the magic is flashy and chaotic, but brutally effective!',
+            enduringEffects: [
+                {
+                    active: false, 
+                    name: null,
+                    emoji: null, 
+                    damage: 0, 
+                    debuff: 0, 
+                    duration: 0
+                }
+            ],
+            attacks: [
+                {
+                    name: 'Fire Bolt',
+                    damage: '3d6', 
+                    manaCost: 50, 
+                    inflictingEffect: [
+                        {
+                            name: 'Burn', 
+                            damage: 2, 
+                            debuff: 0, 
+                            duration: 3
+                        }
+                    ]
+                },
+                {
+                    name: 'Illusion',
+                    damage: '1d4', 
+                    manaCost: 30, 
+                    inflictingEffect: [
+                        {
+                            name: 'Confused', 
+                            damage: 0, 
+                            debuff: 5, 
+                            duration: 2
+                        }
+                    ]
+                },
+                {
+                    name: 'Wind Blade',
+                    damage: '2d8', 
+                    manaCost: 40, 
+                    inflictingEffect: [
+                        {
+                            name: 'None', 
+                            damage: 0, 
+                            debuff: 0, 
+                            duration: 0
+                        }
+                    ]
+                }
+            ],
+        },
+        {
+            id: 'warriorBtn',
+            role: 'Warrior',
+            name: 'Warrior Wanda',
+            type: 'character',
+            baseMana: 70,
+            baseHealth: 160,
+            mana: 70, 
+            health: 2, 
+            alive: true,
+            image: 'images/femaleWarrior.png',
+            flavorText: 'Determined to protect the party and fight the monsters within the deep, dark bowels of the dungeon',
+            enduringEffects: [
+                {
+                    active: false, 
+                    name: null,
+                    emoji: null, 
+                    damage: 0, 
+                    debuff: 0, 
+                    duration: 0
+                }
+            ],
+            attacks: [
+                {
+                    name: 'Mighty Sword',
+                    damage: '2d20', 
+                    manaCost: 20, 
+                    inflictingEffect: [
+                        {
+                            name: 'Bleed', 
+                            damage: 2, 
+                            debuff: 0, 
+                            duration: 3
+                        }
+                    ]
+                },
+                {
+                    name: 'Shield Bash',
+                    damage: '2d8', 
+                    manaCost: 0, 
+                    inflictingEffect: [
+                        {
+                            name: 'None', 
+                            damage: 0, 
+                            debuff: 0, 
+                            duration: 0
+                        }
+                    ]
+                },
+                {
+                    name: 'Slice and Dice',
+                    damage: '3d8', 
+                    manaCost: 15, 
+                    inflictingEffect: [
+                        {
+                            name: 'None', 
+                            damage: 0, 
+                            debuff: 0, 
+                            duration: 0
+                        }
+                    ]
+                }
+            ],
+        },
+        {
+            id: 'rogueBtn',
+            role: 'Rogue',
+            name: 'Rogue Rianna',
+            type: 'character',
+            baseMana: 95,
+            baseHealth: 100,
+            mana: 95, 
+            health: 2, 
+            alive: true,
+            image: 'images/femaleRogue.png',
+            flavorText: 'Skilled marksman and adept at locks and traps - be careful of shadows and blind spots - zippered pockets are recommended',
+            enduringEffects: [
+                {
+                    active: false, 
+                    name: null,
+                    emoji: null, 
+                    damage: 0, 
+                    debuff: 0, 
+                    duration: 0
+                }
+            ],
+            attacks: [
+                {
+                    name: 'Power Shot',
+                    damage: '2d8', 
+                    manaCost: 25, 
+                    inflictingEffect: [
+                        {
+                            name: 'None', 
+                            damage: 0, 
+                            debuff: 0, 
+                            duration: 0
+                        }
+                    ]
+                },
+                {
+                    name: 'Deadly Dagger',
+                    damage: '3d6', 
+                    manaCost: 0, 
+                    inflictingEffect: [
+                        {
+                            name: 'Poison', 
+                            damage: 2, 
+                            debuff: 0, 
+                            duration: 2
+                        }
+                    ]
+                },
+                {
+                    name: 'Magic Trap',
+                    damage: '3d8', 
+                    manaCost: 22, 
+                    inflictingEffect: [
+                        {
+                            name: 'None', 
+                            damage: 0, 
+                            debuff: 0, 
+                            duration: 0
+                        }
+                    ]
+                }
+            ],
+        },
+    ],
+    monsters: [
+        {
+            name: 'Hobgoblin',
+            type: 'monster',
+            minHealth: 250,
+            maxHealth: 400,
+            health: 0,
+            alive: true,
+            image: 'images/hobgoblin.png',
+            flavorText: 'Smelly little beasties that like shiny things and frog eye soup',
+            enduringEffects: [
+                {
+                    active: false, 
+                    name: null,
+                    emoji: null, 
+                    damage: 0, 
+                    debuff: 0, 
+                    duration: 0
+                }
+            ],
+            attacks: [
+                {
+                    name: 'Stink Bomb', 
+                    damage: '2d6', 
+                    inflictingEffect: [
+                        {
+                            name: 'Poison', 
+                            damage: 1, 
+                            debuff: 0, 
+                            duration: 3
+                        }
+                    ]
+                },
+                {
+                    name: 'Headbutt', 
+                    damage: '3d8', 
+                    inflictingEffect: [
+                        {
+                            name: 'Confused', 
+                            damage: 0, 
+                            debuff: 2, 
+                            duration: 2
+                        }
+                    ]
+                },
+                {
+                    name: 'Knee Biter', 
+                    damage: '1d20', 
+                    inflictingEffect: [
+                        {
+                            name: 'None', 
+                            damage: 0, 
+                            debuff: 0, 
+                            duration: 0
+                        }
+                    ]
+                }
+            ],
+        },
+        {
+            name: 'Wyvern',
+            type: 'monster',
+            minHealth: 250,
+            maxHealth: 400,
+            health: 0,
+            alive: true,
+            image: 'images/wyvern.png',
+            flavorText: 'A screech that will stop you cold and a tail like a whip',
+            enduringEffects: [
+                {
+                    active: false, 
+                    name: null,
+                    emoji: null, 
+                    damage: 0, 
+                    debuff: 0, 
+                    duration: 0
+                }
+            ],
+            attacks: [
+                {
+                    name: 'Tail Slash', 
+                    damage: '2d20', 
+                    inflictingEffect: [
+                        {
+                            name: 'None', 
+                            damage: 0, 
+                            debuff: 0, 
+                            duration: 0
+                        }
+                    ]
+                },
+                {
+                    name: 'Sonic Screech', 
+                    damage: '2d4', 
+                    inflictingEffect: [
+                        {
+                            name: 'Confused', 
+                            damage: 0, 
+                            debuff: 3, 
+                            duration: 3
+                        }
+                    ]
+                },
+                {
+                    name: 'Claws of Carnage', 
+                    damage: '3d6', 
+                    inflictingEffect: [
+                        {
+                            name: 'Bleed', 
+                            damage: 2, 
+                            debuff: 0, 
+                            duration: 2
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            name: 'Rock Golem',
+            type: 'monster',
+            minHealth: 250,
+            maxHealth: 400,
+            health: 0,
+            alive: true,
+            image: 'images/rockGolem.png',
+            flavorText: 'If you find dusty footprints - you are likely on the trail of a Rock Golem',
+            enduringEffects: [
+                {
+                    active: false, 
+                    name: null,
+                    emoji: null, 
+                    damage: 0, 
+                    debuff: 0, 
+                    duration: 0
+                }
+            ],
+            attacks: [
+                {
+                    name: 'Rumbling Roll', 
+                    damage: '3d6', 
+                    inflictingEffect: [
+                        {
+                            name: 'None', 
+                            damage: 0, 
+                            debuff: 0, 
+                            duration: 0
+                        }
+                    ]
+                },
+                {
+                    name: 'Stone Hail Storm', 
+                    damage: '1d20', 
+                    inflictingEffect: [
+                        {
+                            name: 'None', 
+                            damage: 0, 
+                            debuff: 0, 
+                            duration: 0
+                        }
+                    ]
+                },
+                {
+                    name: 'Granite Punch', 
+                    damage: '3d8', 
+                    inflictingEffect: [
+                        {
+                            name: 'Confused', 
+                            damage: 0, 
+                            debuff: 2, 
+                            duration: 3
+                        }
+                    ]
+                }
+            ],
+        }
+    ],
+    // objects
+    emoji: {
+        game: {
+            turn: '⏰',
+            alert: '⚠️',
+            reset: '🔁',   
+        },
+        effect: {
+            burn: '🔥',
+            poison: '☠️',
+            confused: '💫',
+            bleed: '🩸'
+        },
+        monster: {
+            appears: '🎯',
+            health: '💙',
+            attack: '💥',
+            effectCleared: '😈',
+            effectActive: '🌀',
+            effectDamage: '🔷',
+            effectDebuff: '⛓️‍💥',
+            death: '🏆',
+        },
+        character: {
+            health: '❤️',
+            mana: '✨',
+            attack: '⚔️',
+            effectCleared: '💪',
+            effectActive: '💢',
+            effectDamage: '🔶',
+            effectDebuff: '🤕',
+            death: '😵',
+            partyDeath: '💀'
+        },
+    },
+    emojiDescription: {
+        '⏰': 'Turn timer',
+        '⚠️': 'Alert player',
+        '🔁': 'Game restarted',
+        '🔥': 'Burn',
+        '☠️': 'Poison',
+        '💫': 'Confused',
+        '🩸': 'Bleed',
+        '🎯': 'Monster appears',
+        '💙': 'Monster health',
+        '💥': 'Monster attack',
+        '😈': 'Monster is clear of effect',
+        '🌀': 'Monster is inflicted with effect',
+        '🔷': 'Monster takes damage from effect',
+        '⛓️‍💥': 'Monster attack damage reduced from effect',
+        '🏆': 'Monster has been slain',
+        '❤️': 'Character health',
+        '✨': 'Character mana',
+        '⚔️': 'Character attack',
+        '💪': 'Character is clear of effect',
+        '💢': 'Character is inflicted with effect',
+        '🔶': 'Character takes damage from effect',
+        '🤕': 'Character attack damage reduced from effect',
+        '😵': 'Character has fallen',
+        '💀': 'Party wipe'
+    },
+    effectDescriptions: {
+        burn: "Monster takes 2 damage for 3 turns.",
+        poison: "Monster takes 2 damage for 2 turns.",
+        confused: "Monster does 5 less damage for 2 turns",
+        bleed: "Monster takes 2 damage for 3 turns",
+        none: "No status effect from this attack."
+    }
+};
+// global variables
+let activeMonster = false;
+let activeCharacter = false;
+let monsterData = null;
+let characterData = null;
+let turnCounter = 1;
+let selectedAttack = null;
+let randomAttack = null;
+
+const attackBtn = document.getElementById('attack');
+const enterDungeonBtn = document.getElementById('enterDungeonBtn');
+const attackButtonsContainer = document.getElementById('attackButtonsContainer');
+const characterImage = document.getElementById('characterImage');
+const characterFlavor = document.getElementById('characterFlavor');
+const characterHealth = document.getElementById('characterHealth');
+const characterMana = document.getElementById('characterMana');
+const characterStatusEffect = document.getElementById('characterStatusEffect');
+const monsterImage = document.getElementById('monsterImage');
+const monsterFlavor = document.getElementById('monsterFlavor');
+const monsterHealth = document.getElementById('monsterHealth');
+const monsterStatusEffect = document.getElementById('monsterStatusEffect');
+
+// initialize game
+renderHeroButtons();
+// buttons
+enterDungeonBtn.addEventListener('click', () => {
+    const randomIndex = Math.floor(Math.random() * gameData.monsters.length);
+    selectedMonster = gameData.monsters[randomIndex];
+    activeMonster = true;
+    monsterData = selectedMonster;
+    monsterData.health = Math.floor(Math.random() * (monsterData.maxHealth - monsterData.minHealth + 1)) + monsterData.minHealth;
+    const healthLabel = `${getEntityEmoji(monsterData, 'health')} Health: ${monsterData.health}`
+    
+    document.getElementById('monsterName').textContent = monsterData.name;
+    document.getElementById('monsterImage').src = monsterData.image;
+    document.getElementById('monsterFlavor').textContent = monsterData.flavorText;
+    document.getElementById('monsterHealth').textContent = healthLabel;
+    /*displayStatusEffect(monsterData, 'monsterStatusEffect')*/ //uncomment if there will be monster's switching inbetween rounds
+
+    playerMessage(`Select an attack to battle the ${monsterData.name}`);
+    logMessage(`${gameData.emoji.game.turn} --- Turn ${turnCounter} ---`)
+    logMessage(`${gameData.emoji.monster.appears} ${monsterData.name} appears`);
+    logMessage(`${gameData.emoji.monster.health} Starting Health: ${monsterData.health}`);
+    
+    enterDungeonBtn.disabled = true;
+    enterDungeonBtn.textContent = "Dungeon Entered";
+});
+nextTurnBtn.addEventListener('click', () => {
+  if (!activeMonster || activeMonster.health <= 0) return;
+
+  if (characterData.health <= 0) {
+    gameMessage(`${gameData.emoji.game.alert} ${characterData.name} is unable to fight! Choose another hero.`);
+    return;
+  };
+  
+  attackButtonsContainer.style.display = 'block';
+  nextTurnBtn.style.display = 'none';
+  
+  turnCounter++;
+  playerMessage(`Round ${turnCounter} begins! Select a Hero and attack`);
+  logMessage(`${gameData.emoji.game.turn} --- Turn ${turnCounter} ---`);
+  gameMessage('');
+});
+function renderAttackButtons(characterData) {
+    
+    attackButtonsContainer.innerHTML = '';
+    characterData.attacks.forEach(attack => {
+
+    const button = document.createElement('button');
+    button.classList.add('attack-button');
+
+    const disableButton = characterData.mana < attack.manaCost || !characterData.alive;
+    if (disableButton) button.classList.add('disabled-button');
+
+    const effectName = attack.inflictingEffect[0]?.name || 'none';
+    const effectEmoji = getEffectEmoji(effectName);
+    const description = effectName.toLowerCase() || 'none'
+
+    button.innerHTML = `
+      <span class="attack-name">${attack.name}</span>
+      <div class="attack-info">
+        <span class="mana-cost">Mana cost: ${attack.manaCost}</span>
+        <span class="dice-roll">Dice: ${attack.damage}</span>
+        <span class="status-effect">Status effect: ${effectEmoji}${effectName}</span>
+      </div>
+    `;
+
+    if (disableButton) {
+      button.disabled = true;
+      button.classList.add('disabled-button');
+    }
+    
+    button.addEventListener('mouseover', () => showDescription(getEffectDescription(description)));
+    button.addEventListener('mouseout', () => showDescription(''));
+    button.addEventListener('click', () => {
+      if (!activeMonster) {
+        playerMessage(`${gameData.emoji.game.alert} There is no target for your attack! Have you entered the dungeon?`)
+        return;
+      }
+      selectedAttack = attack;
+      
+      showDescription('');
+      attackButtonsContainer.style.display = 'none';
+      nextTurnBtn.style.display = 'block';
+      playerMessage('');
+      round ();
+    });
+    attackButtonsContainer.appendChild(button);
+  });
+};
+function renderHeroButtons() {
+    attackButtonsContainer.innerHTML = '';
+    attackButtonsContainer.style.display = 'block';
+    playerMessage.innerHTML = '';
+  
+  gameData.characters.forEach(character => {
+    const button = document.getElementById(character.id);
+    const newButton = button.cloneNode(true);
+    button.parentNode.replaceChild(newButton, button);
+    const disableButton = character.health <= 0 || !character.alive;
+
+    newButton.textContent = character.role;
+    newButton.classList.remove('disabled-button');
+
+    if (disableButton) {
+      newButton.disabled = true;
+      newButton.classList.add('disabled-button');
+      if (!newButton.textContent.includes(getEntityEmoji(characterData, 'death'))) {
+        newButton.textContent += `${getEntityEmoji(characterData, 'death')}`;
+      }
+    };
+
+    if (!disableButton) {
+      newButton.addEventListener('click', () => {
+        characterData = character
+        activeCharacter = true;
+
+        document.getElementById('characterName').textContent = character.name;
+        characterImage.src = character.image;
+        characterFlavor.textContent = character.flavorText;
+        characterHealth.textContent = `Health ${getEntityEmoji(character, 'health')}: ${character.health}`;
+        characterMana.textContent = `Mana ${getEntityEmoji(character, 'mana')}: ${character.mana}`;
+
+        displayStatusEffect(characterData, 'characterStatusEffect');
+        renderAttackButtons(character);
+      });
+    };
+  });
+};
+// text boxes and displays
+function playerMessage(prompt) {
+  const promptBox = document.getElementById('playerMessage');
+  promptBox.textContent = prompt;
+};
+function gameMessage(message, useHTML = false, append = false) {
+  const messageBox = document.getElementById('gameMessage');
+  
+  if (useHTML) {
+    messageBox.innerHTML = append
+      ? messageBox.innerHTML + message
+      : message || '';
+  } else {
+    messageBox.textContent = append
+      ? messageBox.textContent + message
+      : message || '';
+  }
+};
+function logMessage(message) {
+  const log = document.getElementById('battleLog');
+  const entry = document.createElement('div');
+  entry.classList.add('battle-log-entry');
+  entry.textContent = message;
+  log.appendChild(entry);
+  log.scrollTo({ top: log.scrollHeight, behavior: 'smooth' });
+};
+function printBattleLog() {
+    const log = document.getElementById('battleLog')
+    const originalDisplay = log.style.display;
+    log.style.display = 'block';
+    window.print();
+    log.style.display = originalDisplay;
+};
+function printBattleLog() {
+    const log = document.getElementById('battleLog');
+    const previousDisplay = log.style.display;
+    log.style.display = 'block';
+    const now = new Date();
+    const timestamp = now.toLocaleString(); // Format: MM/DD/YYYY, HH:MM:SS
+    const headerHTML = `
+        <div id="printHeader">
+            <h2>Battle Log</h2>
+            <p><em>Printed on: ${timestamp}</em></p>
+            <hr>
+        </div>
+    `;
+    log.insertAdjacentHTML('afterbegin', headerHTML);
+    window.print();
+    const header = document.getElementById('printHeader');
+    if (header) header.remove();
+    log.style.display = previousDisplay;
+};
+// game functions
+function getEntity(type, index) {
+    if (type === 'character') return gameData.characters[index];
+    if (type === 'monster') return gameData.monsters[index];
+    throw new Error(`getEntity() failed — Unknown entity type: "${type}". Expected character or monster`);
+};
+function getEffectEmoji(effectName) {
+  switch (effectName) {
+    case 'Poison':
+        return gameData.emoji.effect.poison;
+    case 'Bleed':
+        return gameData.emoji.effect.bleed;
+    case 'Confused':
+        return gameData.emoji.effect.confused;
+    case 'Burn':
+        return gameData.emoji.effect.burn;
+    default:
+        return '';
+  };
+};
+function getEffectDescription(description) {
+  switch (description) {
+    case 'poison':
+        return gameData.effectDescriptions.poison;
+    case 'bleed':
+        return gameData.effectDescriptions.bleed;
+    case 'confused':
+        return gameData.effectDescriptions.confused;
+    case 'burn':
+        return gameData.effectDescriptions.burn;
+    case 'none':
+        return gameData.effectDescriptions.none;
+    default:
+        return '';
+  };
+};
+function getEntityEmoji(entity, emoji) {
+    const fallback = '';
+    if (!entity || !entity) return fallback;
+    return entity.type === 'character'
+        ? gameData.emoji.character?.[emoji] || fallback
+        : gameData.emoji.monster?.[emoji] || fallback;
+};
+function updateStats() {
+    characterHealth.textContent = `Health ${gameData.emoji.character.health}: ${characterData.health}`;
+    characterMana.textContent = `Mana ${gameData.emoji.character.mana}: ${characterData.mana}`;
+    monsterHealth.textContent = `Health ${gameData.emoji.monster.health}: ${monsterData.health}`;
+};
+function showDescription(text) {
+  const descriptionBox = document.getElementById('descriptionBox');  
+  descriptionBox.textContent = text || '';
+};
+function displayStatusEffect(entity, elementId) {
+  const effect = entity.enduringEffects[0];
+  const element = document.getElementById(elementId);
+
+  if (effect.name !== 'None' && effect.active) {
+    const turnText = effect.duration === 1 ? 'turn' : 'turns';
+    let effectText = `${effect.emoji} ${effect.name}: `;
+
+    if (effect.damage !== 0) {
+      effectText += `${effect.damage} dmg for ${effect.duration} ${turnText}`;
+    } else if (effect.debuff !== 0) {
+      effectText += `${effect.debuff} less attack dmg for ${effect.duration} ${turnText}`;
+    };
+
+    element.textContent = effectText;
+  };
+
+  if (!effect.active) {
+    element.textContent = ''
+  }
+};
+function diceRoller(dice) {
+  const [count, sides] = dice.toLowerCase().split('d').map(Number);
+  let total = 0;
+  for (let i = 0; i < count; i++) {
+    total += Math.floor(Math.random() * sides) + 1;
+  }
+  return total;
+};
+function attackRandomizer() {
+    const indexSelect = Math.floor(Math.random () * monsterData.attacks.length);
+    randomAttack = monsterData.attacks[indexSelect];
+};
+function attack(attacker, defender, attack) {
+  if (!attacker.alive) return;
+
+    const entity = attacker.type;
+    const damage = diceRoller(attack.damage);
+    const debuff = attacker.enduringEffects[0].debuff;
+    const totalDamage = damage - debuff;
+    if (totalDamage < 0) {
+        totalDamage = 0;
+    };
+
+    defender.health -= totalDamage;
+
+    if (entity === 'character') {
+        attacker.mana -= attack.manaCost;
+    };
+
+  if (defender.health <= 0) {
+    defender.health = 0;
+    defender.alive = false;
+  };
+
+  if (attacker.enduringEffects[0].debuff !== 0) {
+    gameMessage(`${attacker.name} rolled for ${damage} points of damage but a debuff of -${attacker.enduringEffects[0].debuff} reduced the attack to ${totalDamage}`, true, true)
+    logMessage(`${getEntityEmoji(attacker, 'attack')} ${attacker.name} rolled ${damage} damage but debuff of -${attacker.enduringEffects[0].debuff} reduced ${attack.name} attack to ${totalDamage}`);
+    } else {
+    gameMessage(`${attacker.name} dealt ${totalDamage} points of damage with ${attack.name}`, true, true);
+    logMessage(`${getEntityEmoji(attacker, 'attack')} ${attacker.name} dealt ${totalDamage} damage with ${attack.name}`);
+  };
+
+  logMessage(`${getEntityEmoji(defender, 'health')} ${defender.name} has ${defender.health} health remaining`);
+
+  renderHeroButtons();
+  updateStats();
+};
+function statusHandler(defender, attack) {
+
+
+    if (attack.name !== 'None' && attack.name !== null && !defender.enduringEffects[0].active && defender.health > 0) {
+        
+        const effect = attack.inflictingEffect[0];
+
+        defender.enduringEffects[0] = {                     
+            active: true,
+            name: effect.name,
+            emoji: getEffectEmoji(effect.name),
+            damage: effect.damage,
+            debuff: effect.debuff,
+            duration: effect.duration
+        };
+        if (defender.enduringEffects[0].name !== 'None')
+        logMessage(`${getEntityEmoji(defender, 'effectActive')} ${defender.name} must endure ~${defender.enduringEffects[0].emoji}${defender.enduringEffects[0].name}~ effect`);
+    };
+};
+function effectTicker(entity) {
+    const effect = entity.enduringEffects[0];
+
+    if (effect.damage !== 0 && effect.active && entity.health > 0) {  
+        entity.health -= effect.damage;
+        effect.duration --;
+        
+        gameMessage(`<br><br><strong>~ ~ ${getEntityEmoji(entity, 'effectDamage')} Damage Effect ~ ~</strong><br>
+            ${entity.name} suffers ${effect.damage} points of damage from ${effect.name} effect`, true, true);
+        
+        logMessage(`${getEntityEmoji(entity, 'effectDamage')} ${entity.name} took ${effect.damage} damage from effect`);
+        logMessage(`${getEntityEmoji(entity, 'health')} ${entity.name} has ${entity.health} health remaining`);
+    }
+
+    if (effect.duration <= 0 && effect.name !== null && effect.name !== 'None') {
+
+        logMessage(`${getEntityEmoji(entity, 'effectCleared')} ${entity.name} is clear of ${effect.name} effect`);
+
+        effect.active = false;
+        effect.name = null;
+        effect.emoji = null;
+        effect.damage = 0;
+        effect.debuff = 0;
+        effect.duration = 0;
+    };
+
+    if (entity.health <= 0) {
+        entity.health = 0;
+        entity.alive = false;
+    };
+
+    updateStats();
+};
+function checkDefeat(entity) {
+    if (entity.health <= 0 || !entity.alive) {
+        if (entity.type === 'character') {
+            characterData.alive = false;
+            gameMessage(`<br><br><strong>~ ~ ${getEntityEmoji(entity, 'death')} ${entity.name} has fallen in battle ~ ~</strong>`, true, true);
+            logMessage(`${getEntityEmoji(entity, 'death')} ${entity.name} has fallen in battle`)
+            
+        } else if (entity.type === 'monster') {
+            monsterData.alive = false;
+            gameMessage(`<br><br><strong>~ ~ ${getEntityEmoji(entity, 'death')} ${entity.name} has been slain! ~ ~</strong>`, true, true);
+            logMessage(`${getEntityEmoji(entity, 'death')} ${entity.name} has been slain!`);
+
+            const printBtn = document.getElementById('print');
+            printBtn.style.display = 'inline-block';
+            printBtn.addEventListener('click', printBattleLog);
+            
+            document.getElementById('nextTurnBtn').style.display = 'none';
+            const playAgainButton = document.getElementById('playAgain');
+            playAgainButton.style.display = 'inline-block';            
+            playAgainButton.addEventListener('click', () => {
+                reset();
+            });
+        };
+    };
+};
+function checkPartyWipe() {
+    const allDead = gameData.characters.every(character => character.health <= 0);
+    if (allDead) {
+        gameMessage(`<br><br><strong> ~ ~ ${gameData.emoji.character.partyDeath} All Heroes have fallen! ~ ~</strong>`, true, true);
+        logMessage(`${gameData.emoji.character.partyDeath} All Heroes have fallen!`);
+        document.getElementById('nextTurnBtn').style.display = 'none';
+
+        const printBtn = document.getElementById('print');
+        printBtn.style.display = 'inline-block';
+        printBtn.addEventListener('click', printBattleLog);
+
+        const playAgainButton = document.getElementById('playAgain');
+        playAgainButton.style.display = 'inline-block';            
+        playAgainButton.addEventListener('click', () => {
+            reset();
+        });
+    };
+};
+function round () {
+    gameMessage(`<strong>~ ~${gameData.emoji.character.attack} Hero Attacks! ~ ~</strong><br>`, true, false)    
+    attack(characterData, monsterData, selectedAttack);
+    checkDefeat(monsterData);
+    statusHandler(monsterData, selectedAttack);
+    effectTicker(characterData);
+    checkDefeat(characterData);
+    gameMessage(`<br><br><strong>~ ~${gameData.emoji.monster.attack} Monster Attacks! ~ ~</strong><br>`, true, true)
+    attackRandomizer();
+    attack(monsterData, characterData, randomAttack);
+    checkDefeat(characterData);
+    checkPartyWipe();
+    statusHandler(characterData, randomAttack);
+    displayStatusEffect(characterData, 'characterStatusEffect');
+    effectTicker(monsterData);
+    displayStatusEffect(monsterData, 'monsterStatusEffect');
+    checkDefeat(monsterData);
+};
+function reset() {
+    //reset character and monster data
+    activeCharacter = false;
+    activeMonster = false;
+    
+    gameData.monsters.forEach(monster => {
+        const monsterEffect = monster.enduringEffects[0]
+        monster.health = 0;
+        monster.alive = true;
+        monsterEffect.active = false;
+        monsterEffect.name = null;
+        monsterEffect.emoji = null;
+        monsterEffect.damage = 0;
+        monsterEffect.debuff = 0;
+        monsterEffect.duration = 0;
+    });
+    gameData.characters.forEach(character => {
+        const characterEffect = character.enduringEffects[0]
+        character.mana = character.baseMana;
+        character.health = character.baseHealth;
+        character.alive = true;
+        characterEffect.active = false;
+        characterEffect.name = null;
+        characterEffect.emoji = null;
+        characterEffect.damage = 0;
+        characterEffect.debuff = 0;
+        characterEffect.duration = 0;
+    });
+    displayStatusEffect(characterData, 'characterStatusEffect');
+    displayStatusEffect(monsterData, 'monsterStatusEffect');    
+    document.getElementById('monsterName').textContent = 'Monster';
+    document.getElementById('monsterImage').src = 'images/dungeonDoor.png';
+    document.getElementById('monsterFlavor').textContent = '';
+    document.getElementById('monsterHealth').textContent = '';
+    document.getElementById('characterName').textContent = 'Heroes';
+    document.getElementById('characterImage').src = 'images/startingPartyImage.png';
+    document.getElementById('characterFlavor').textContent = '';
+    document.getElementById('characterHealth').textContent = '';
+    document.getElementById('characterMana').textContent = '';
+    //clear messages and buttons
+    document.getElementById('gameMessage').innerHTML = '';
+    document.getElementById('playerMessage').innerHTML = '';
+    document.getElementById('battleLog').innerHTML = '';
+    document.getElementById('descriptionBox').innerHTML = ''; 
+    document.getElementById('print').style.display = 'none';
+    document.getElementById('playAgain').style.display = 'none';
+    document.getElementById('enterDungeonBtn').disabled = false;
+    document.getElementById('enterDungeonBtn').innerHTML = 'Enter Dungeon';
+    document.getElementById('mageBtn').disabled = false;
+    document.getElementById('warriorBtn').disabled = false;
+    document.getElementById('rogueBtn').disabled = false;
+    attackButtonsContainer.innerHTML = '';
+    attackButtonsContainer.style.display = 'none';
+
+    renderHeroButtons();
+
+};
