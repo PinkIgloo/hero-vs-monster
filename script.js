@@ -65,14 +65,14 @@ const gameData = {
             attacks: [
                 {
                     name: 'Fire Bolt',
-                    damage: '3d6', 
+                    damage: '3d8', 
                     manaCost: 50, 
                     inflictingEffect: [
                         {
                             name: 'Burn', 
-                            damage: 2, 
+                            damage: 3, 
                             debuff: 0, 
-                            duration: 3
+                            duration: 4
                         }
                     ]
                 },
@@ -90,15 +90,15 @@ const gameData = {
                     ]
                 },
                 {
-                    name: 'Wind Blade',
-                    damage: '2d8', 
-                    manaCost: 40, 
+                    name: 'Empty Curse',
+                    damage: '1d6', 
+                    manaCost: 0, 
                     inflictingEffect: [
                         {
                             name: 'None', 
-                            damage: 0, 
+                            damage: 2, 
                             debuff: 0, 
-                            duration: 0
+                            duration: 2
                         }
                     ]
                 }
