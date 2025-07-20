@@ -43,7 +43,7 @@ const gameData = {
         {
             id: 'mageBtn',
             role: 'Mage',
-            name: 'Mage Marian',
+            name: 'Marian',
             type: 'character',
             baseMana: 210,
             baseHealth: 80,
@@ -51,7 +51,7 @@ const gameData = {
             health: 80, 
             alive: true,
             image: 'images/femaleMage.png',
-            flavorText: 'Self trained by trial and error - the magic is flashy and chaotic, but brutally effective!',
+            flavorText: 'Marian is self trained and a bit of a pyromaniac - the magic is flashy and chaotic, but brutally effective!',
             enduringEffects: [
                 {
                     active: false, 
@@ -107,15 +107,15 @@ const gameData = {
         {
             id: 'warriorBtn',
             role: 'Warrior',
-            name: 'Warrior Wanda',
+            name: 'Wanda',
             type: 'character',
             baseMana: 70,
             baseHealth: 160,
             mana: 70, 
-            health: 2, 
+            health: 160, 
             alive: true,
             image: 'images/femaleWarrior.png',
-            flavorText: 'Determined to protect the party and fight the monsters within the deep, dark bowels of the dungeon',
+            flavorText: 'Wanda is fiercly loyal but tends to wander and get lost when no one is looking - probably looking for loot!',
             enduringEffects: [
                 {
                     active: false, 
@@ -171,15 +171,15 @@ const gameData = {
         {
             id: 'rogueBtn',
             role: 'Rogue',
-            name: 'Rogue Rianna',
+            name: 'Rianna',
             type: 'character',
             baseMana: 95,
             baseHealth: 100,
             mana: 95, 
-            health: 2, 
+            health: 100, 
             alive: true,
             image: 'images/femaleRogue.png',
-            flavorText: 'Skilled marksman and adept at locks and traps - be careful of shadows and blind spots - zippered pockets are recommended',
+            flavorText: 'Rianna is still figuring that out what she fights for. Coin? Glory? The adrenaline rush?',
             enduringEffects: [
                 {
                     active: false, 
@@ -242,7 +242,7 @@ const gameData = {
             health: 0,
             alive: true,
             image: 'images/hobgoblin.png',
-            flavorText: 'Smelly little beasties that like shiny things and frog eye soup',
+            flavorText: 'Smelly little beasties that like shiny things and frog eye soup - but only when it is made by his mom!',
             enduringEffects: [
                 {
                     active: false, 
@@ -300,7 +300,7 @@ const gameData = {
             health: 0,
             alive: true,
             image: 'images/wyvern.png',
-            flavorText: 'A screech that will stop you cold and a tail like a whip',
+            flavorText: 'A screech that will stop you cold and a tail like a whip. Very territorial during breeding season!',
             enduringEffects: [
                 {
                     active: false, 
@@ -358,7 +358,7 @@ const gameData = {
             health: 0,
             alive: true,
             image: 'images/rockGolem.png',
-            flavorText: 'If you find dusty footprints - you are likely on the trail of a Rock Golem',
+            flavorText: 'If you find dusty footprints - you are likely on the trail of a Rock Golem, so check the cavern wall for eyes',
             enduringEffects: [
                 {
                     active: false, 
