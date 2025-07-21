@@ -46,9 +46,9 @@ const gameData = {
             name: 'Marian',
             type: 'character',
             baseMana: 210,
-            baseHealth: 50,
+            baseHealth: 40,
             mana: 210, 
-            health: 50, 
+            health: 40, 
             alive: true,
             image: 'images/femaleMage.png',
             flavorText: 'Marian is self trained and a bit of a pyromaniac - the magic is flashy and chaotic, but brutally effective!',
@@ -65,12 +65,12 @@ const gameData = {
             attacks: [
                 {
                     name: 'Fire Bolt',
-                    damage: '3d8', 
+                    damage: '4d8', 
                     manaCost: 50, 
                     inflictingEffects: [
                         {
                             name: 'Burn', 
-                            damage: 3, 
+                            damage: 5, 
                             debuff: 0, 
                             duration: 4
                         }
@@ -78,7 +78,7 @@ const gameData = {
                 },
                 {
                     name: 'Illusion',
-                    damage: '1d4', 
+                    damage: '1d6', 
                     manaCost: 30, 
                     inflictingEffects: [
                         {
@@ -110,9 +110,9 @@ const gameData = {
             name: 'Wanda',
             type: 'character',
             baseMana: 70,
-            baseHealth: 100,
+            baseHealth: 80,
             mana: 70, 
-            health: 100, 
+            health: 80, 
             alive: true,
             image: 'images/femaleWarrior.png',
             flavorText: 'Wanda is fiercly loyal but tends to wander and get lost when no one is looking - probably looking for loot!',
@@ -134,7 +134,7 @@ const gameData = {
                     inflictingEffects: [
                         {
                             name: 'Bleed', 
-                            damage: 2, 
+                            damage: 3, 
                             debuff: 0, 
                             duration: 3
                         }
@@ -142,7 +142,7 @@ const gameData = {
                 },
                 {
                     name: 'Shield Bash',
-                    damage: '2d8', 
+                    damage: '3d8', 
                     manaCost: 0, 
                     inflictingEffects: [
                         {
@@ -155,7 +155,7 @@ const gameData = {
                 },
                 {
                     name: 'Slice and Dice',
-                    damage: '3d8', 
+                    damage: '3d20', 
                     manaCost: 15, 
                     inflictingEffects: [
                         {
@@ -174,9 +174,9 @@ const gameData = {
             name: 'Rianna',
             type: 'character',
             baseMana: 95,
-            baseHealth: 75,
+            baseHealth: 65,
             mana: 95, 
-            health: 75, 
+            health: 65, 
             alive: true,
             image: 'images/femaleRogue.png',
             flavorText: 'Rianna is still figuring that out what she fights for. Coin? Glory? The adrenaline rush?',
@@ -193,7 +193,7 @@ const gameData = {
             attacks: [
                 {
                     name: 'Power Shot',
-                    damage: '2d8', 
+                    damage: '3d8', 
                     manaCost: 25, 
                     inflictingEffects: [
                         {
@@ -206,12 +206,12 @@ const gameData = {
                 },
                 {
                     name: 'Deadly Dagger',
-                    damage: '3d6', 
+                    damage: '2d20', 
                     manaCost: 0, 
                     inflictingEffects: [
                         {
                             name: 'Poison', 
-                            damage: 2, 
+                            damage: 3, 
                             debuff: 0, 
                             duration: 2
                         }
@@ -237,8 +237,8 @@ const gameData = {
         {
             name: 'Hobgoblin',
             type: 'monster',
-            minHealth: 250,
-            maxHealth: 400,
+            minHealth: 200,
+            maxHealth: 300,
             health: 0,
             alive: true,
             image: 'images/hobgoblin.png',
@@ -295,8 +295,8 @@ const gameData = {
         {
             name: 'Wyvern',
             type: 'monster',
-            minHealth: 250,
-            maxHealth: 400,
+            minHealth: 200,
+            maxHealth: 300,
             health: 0,
             alive: true,
             image: 'images/wyvern.png',
@@ -353,8 +353,8 @@ const gameData = {
         {
             name: 'Rock Golem',
             type: 'monster',
-            minHealth: 250,
-            maxHealth: 400,
+            minHealth: 200,
+            maxHealth: 300,
             health: 0,
             alive: true,
             image: 'images/rockGolem.png',
@@ -771,7 +771,7 @@ function attack(attacker, defender, attack) {
   
     const damage = diceRoller(attack.damage);
     const debuff = attacker.enduringEffects[0].debuff;
-    const totalDamage = damage - debuff;
+    let totalDamage = damage - debuff;
 
     if (totalDamage <= 0) {
         totalDamage = 0;
