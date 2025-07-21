@@ -46,9 +46,9 @@ const gameData = {
             name: 'Marian',
             type: 'character',
             baseMana: 210,
-            baseHealth: 80,
+            baseHealth: 50,
             mana: 210, 
-            health: 80, 
+            health: 50, 
             alive: true,
             image: 'images/femaleMage.png',
             flavorText: 'Marian is self trained and a bit of a pyromaniac - the magic is flashy and chaotic, but brutally effective!',
@@ -67,7 +67,7 @@ const gameData = {
                     name: 'Fire Bolt',
                     damage: '3d8', 
                     manaCost: 50, 
-                    inflictingEffect: [
+                    inflictingEffects: [
                         {
                             name: 'Burn', 
                             damage: 3, 
@@ -80,7 +80,7 @@ const gameData = {
                     name: 'Illusion',
                     damage: '1d4', 
                     manaCost: 30, 
-                    inflictingEffect: [
+                    inflictingEffects: [
                         {
                             name: 'Confused', 
                             damage: 0, 
@@ -93,9 +93,9 @@ const gameData = {
                     name: 'Empty Curse',
                     damage: '1d6', 
                     manaCost: 0, 
-                    inflictingEffect: [
+                    inflictingEffects: [
                         {
-                            name: 'None', 
+                            name: 'Poison', 
                             damage: 2, 
                             debuff: 0, 
                             duration: 2
@@ -110,9 +110,9 @@ const gameData = {
             name: 'Wanda',
             type: 'character',
             baseMana: 70,
-            baseHealth: 160,
+            baseHealth: 100,
             mana: 70, 
-            health: 160, 
+            health: 100, 
             alive: true,
             image: 'images/femaleWarrior.png',
             flavorText: 'Wanda is fiercly loyal but tends to wander and get lost when no one is looking - probably looking for loot!',
@@ -131,7 +131,7 @@ const gameData = {
                     name: 'Mighty Sword',
                     damage: '2d20', 
                     manaCost: 20, 
-                    inflictingEffect: [
+                    inflictingEffects: [
                         {
                             name: 'Bleed', 
                             damage: 2, 
@@ -144,7 +144,7 @@ const gameData = {
                     name: 'Shield Bash',
                     damage: '2d8', 
                     manaCost: 0, 
-                    inflictingEffect: [
+                    inflictingEffects: [
                         {
                             name: 'None', 
                             damage: 0, 
@@ -157,7 +157,7 @@ const gameData = {
                     name: 'Slice and Dice',
                     damage: '3d8', 
                     manaCost: 15, 
-                    inflictingEffect: [
+                    inflictingEffects: [
                         {
                             name: 'None', 
                             damage: 0, 
@@ -174,9 +174,9 @@ const gameData = {
             name: 'Rianna',
             type: 'character',
             baseMana: 95,
-            baseHealth: 100,
+            baseHealth: 75,
             mana: 95, 
-            health: 100, 
+            health: 75, 
             alive: true,
             image: 'images/femaleRogue.png',
             flavorText: 'Rianna is still figuring that out what she fights for. Coin? Glory? The adrenaline rush?',
@@ -195,7 +195,7 @@ const gameData = {
                     name: 'Power Shot',
                     damage: '2d8', 
                     manaCost: 25, 
-                    inflictingEffect: [
+                    inflictingEffects: [
                         {
                             name: 'None', 
                             damage: 0, 
@@ -208,7 +208,7 @@ const gameData = {
                     name: 'Deadly Dagger',
                     damage: '3d6', 
                     manaCost: 0, 
-                    inflictingEffect: [
+                    inflictingEffects: [
                         {
                             name: 'Poison', 
                             damage: 2, 
@@ -221,7 +221,7 @@ const gameData = {
                     name: 'Magic Trap',
                     damage: '3d8', 
                     manaCost: 22, 
-                    inflictingEffect: [
+                    inflictingEffects: [
                         {
                             name: 'None', 
                             damage: 0, 
@@ -257,7 +257,7 @@ const gameData = {
                 {
                     name: 'Stink Bomb', 
                     damage: '2d6', 
-                    inflictingEffect: [
+                    inflictingEffects: [
                         {
                             name: 'Poison', 
                             damage: 1, 
@@ -269,7 +269,7 @@ const gameData = {
                 {
                     name: 'Headbutt', 
                     damage: '3d8', 
-                    inflictingEffect: [
+                    inflictingEffects: [
                         {
                             name: 'Confused', 
                             damage: 0, 
@@ -281,7 +281,7 @@ const gameData = {
                 {
                     name: 'Knee Biter', 
                     damage: '1d20', 
-                    inflictingEffect: [
+                    inflictingEffects: [
                         {
                             name: 'None', 
                             damage: 0, 
@@ -315,7 +315,7 @@ const gameData = {
                 {
                     name: 'Tail Slash', 
                     damage: '2d20', 
-                    inflictingEffect: [
+                    inflictingEffects: [
                         {
                             name: 'None', 
                             damage: 0, 
@@ -327,7 +327,7 @@ const gameData = {
                 {
                     name: 'Sonic Screech', 
                     damage: '2d4', 
-                    inflictingEffect: [
+                    inflictingEffects: [
                         {
                             name: 'Confused', 
                             damage: 0, 
@@ -339,7 +339,7 @@ const gameData = {
                 {
                     name: 'Claws of Carnage', 
                     damage: '3d6', 
-                    inflictingEffect: [
+                    inflictingEffects: [
                         {
                             name: 'Bleed', 
                             damage: 2, 
@@ -373,7 +373,7 @@ const gameData = {
                 {
                     name: 'Rumbling Roll', 
                     damage: '3d6', 
-                    inflictingEffect: [
+                    inflictingEffects: [
                         {
                             name: 'None', 
                             damage: 0, 
@@ -385,7 +385,7 @@ const gameData = {
                 {
                     name: 'Stone Hail Storm', 
                     damage: '1d20', 
-                    inflictingEffect: [
+                    inflictingEffects: [
                         {
                             name: 'None', 
                             damage: 0, 
@@ -397,7 +397,7 @@ const gameData = {
                 {
                     name: 'Granite Punch', 
                     damage: '3d8', 
-                    inflictingEffect: [
+                    inflictingEffects: [
                         {
                             name: 'Confused', 
                             damage: 0, 
@@ -515,8 +515,7 @@ enterDungeonBtn.addEventListener('click', () => {
     document.getElementById('monsterImage').src = monsterData.image;
     document.getElementById('monsterFlavor').textContent = monsterData.flavorText;
     document.getElementById('monsterHealth').textContent = healthLabel;
-    /*displayStatusEffect(monsterData, 'monsterStatusEffect')*/ //uncomment if there will be monster's switching inbetween rounds
-
+    
     playerMessage(`Select an attack to battle the ${monsterData.name}`);
     logMessage(`${gameData.emoji.game.turn} --- Turn ${turnCounter} ---`)
     logMessage(`${gameData.emoji.monster.appears} ${monsterData.name} appears`);
@@ -526,20 +525,18 @@ enterDungeonBtn.addEventListener('click', () => {
     enterDungeonBtn.textContent = "Dungeon Entered";
 });
 nextTurnBtn.addEventListener('click', () => {
-  if (!activeMonster || activeMonster.health <= 0) return;
+    
+    displayStatusEffect(monsterData, 'monsterStatusEffect');
+    activeCharacter = false;
+    characterData = null;
+    selectedAttack = null;
+    nextTurnBtn.style.display = 'none';
+    renderHeroButtons();
+    turnCounter++;
 
-  if (characterData.health <= 0) {
-    gameMessage(`${gameData.emoji.game.alert} ${characterData.name} is unable to fight! Choose another hero.`);
-    return;
-  };
-  
-  attackButtonsContainer.style.display = 'block';
-  nextTurnBtn.style.display = 'none';
-  
-  turnCounter++;
-  playerMessage(`Round ${turnCounter} begins! Select a Hero and attack`);
-  logMessage(`${gameData.emoji.game.turn} --- Turn ${turnCounter} ---`);
-  gameMessage('');
+    playerMessage(`Round ${turnCounter} begins! Select a Hero and attack`);
+    logMessage(`${gameData.emoji.game.turn} --- Turn ${turnCounter} ---`);
+    gameMessage('');
 });
 function renderAttackButtons(characterData) {
     
@@ -552,7 +549,7 @@ function renderAttackButtons(characterData) {
     const disableButton = characterData.mana < attack.manaCost || !characterData.alive;
     if (disableButton) button.classList.add('disabled-button');
 
-    const effectName = attack.inflictingEffect[0]?.name || 'none';
+    const effectName = attack.inflictingEffects[0]?.name || 'none';
     const effectEmoji = getEffectEmoji(effectName);
     const description = effectName.toLowerCase() || 'none'
 
@@ -581,7 +578,7 @@ function renderAttackButtons(characterData) {
       
       showDescription('');
       attackButtonsContainer.style.display = 'none';
-      nextTurnBtn.style.display = 'block';
+      
       playerMessage('');
       round ();
     });
@@ -589,42 +586,38 @@ function renderAttackButtons(characterData) {
   });
 };
 function renderHeroButtons() {
+    heroButtonsContainer.innerHTML = '';
     attackButtonsContainer.innerHTML = '';
     attackButtonsContainer.style.display = 'block';
     playerMessage.innerHTML = '';
   
   gameData.characters.forEach(character => {
-    const button = document.getElementById(character.id);
-    const newButton = button.cloneNode(true);
-    button.parentNode.replaceChild(newButton, button);
-    const disableButton = character.health <= 0 || !character.alive;
+    const btn = document.createElement('button');
+    btn.id = character.id;
+    btn.textContent = character.role;
+    btn.classList.add('hero-btn')
 
-    newButton.textContent = character.role;
-    newButton.classList.remove('disabled-button');
+    const shouldDisable = character.health <= 0 || !character.alive;
 
-    if (disableButton) {
-      newButton.disabled = true;
-      newButton.classList.add('disabled-button');
-      if (!newButton.textContent.includes(getEntityEmoji(characterData, 'death'))) {
-        newButton.textContent += `${getEntityEmoji(characterData, 'death')}`;
-      }
+    if (shouldDisable) {
+      btn.disabled = true;
+      btn.classList.add('disabled-button');
+      btn.textContent += `${getEntityEmoji(characterData, 'death')}`;
+    } else {
+        btn.addEventListener('click', () => {
+            characterData = character;
+            activeCharacter = true;
+
+            document.getElementById('characterName').textContent = character.name;
+            characterImage.src = character.image;
+            characterFlavor.textContent = character.flavorText;
+            characterHealth.textContent = `Health ${getEntityEmoji(character, 'health')}: ${character.health}`;
+            characterMana.textContent = `Mana ${getEntityEmoji(character, 'mana')}: ${character.mana}`;
+            displayStatusEffect(character, 'characterStatusEffect')
+            renderAttackButtons(character);
+        });
     };
-
-    if (!disableButton) {
-      newButton.addEventListener('click', () => {
-        characterData = character
-        activeCharacter = true;
-
-        document.getElementById('characterName').textContent = character.name;
-        characterImage.src = character.image;
-        characterFlavor.textContent = character.flavorText;
-        characterHealth.textContent = `Health ${getEntityEmoji(character, 'health')}: ${character.health}`;
-        characterMana.textContent = `Mana ${getEntityEmoji(character, 'mana')}: ${character.mana}`;
-
-        displayStatusEffect(characterData, 'characterStatusEffect');
-        renderAttackButtons(character);
-      });
-    };
+    heroButtonsContainer.appendChild(btn);
   });
 };
 // text boxes and displays
@@ -680,6 +673,15 @@ function printBattleLog() {
     log.style.display = previousDisplay;
 };
 // game functions
+function disableHeroButtons() {
+  gameData.characters.forEach(character => {
+    const btn = document.getElementById(character.id);
+    if (btn) {
+      btn.disabled = true;
+      btn.classList.add('disabled-button');
+    }
+  });
+};
 function getEntity(type, index) {
     if (type === 'character') return gameData.characters[index];
     if (type === 'monster') return gameData.monsters[index];
@@ -765,46 +767,46 @@ function attackRandomizer() {
     randomAttack = monsterData.attacks[indexSelect];
 };
 function attack(attacker, defender, attack) {
-  if (!attacker.alive) return;
-
-    const entity = attacker.type;
+    if (!attacker.alive) return;
+  
     const damage = diceRoller(attack.damage);
     const debuff = attacker.enduringEffects[0].debuff;
     const totalDamage = damage - debuff;
-    if (totalDamage < 0) {
+
+    if (totalDamage <= 0) {
         totalDamage = 0;
     };
 
     defender.health -= totalDamage;
 
-    if (entity === 'character') {
-        attacker.mana -= attack.manaCost;
+    if (defender.health <= 0) {
+        defender.health = 0;
+        defender.alive = false;
     };
 
-  if (defender.health <= 0) {
-    defender.health = 0;
-    defender.alive = false;
-  };
-
-  if (attacker.enduringEffects[0].debuff !== 0) {
-    gameMessage(`${attacker.name} rolled for ${damage} points of damage but a debuff of -${attacker.enduringEffects[0].debuff} reduced the attack to ${totalDamage}`, true, true)
-    logMessage(`${getEntityEmoji(attacker, 'attack')} ${attacker.name} rolled ${damage} damage but debuff of -${attacker.enduringEffects[0].debuff} reduced ${attack.name} attack to ${totalDamage}`);
+    if (attacker.enduringEffects[0].debuff !== 0) {
+        gameMessage(`${attacker.name} rolled for ${damage} points of damage but a debuff of -${attacker.enduringEffects[0].debuff} reduced the ${attack.name} attack to ${totalDamage}`, true, true)
+        logMessage(`${getEntityEmoji(attacker, 'attack')} ${attacker.name} rolled ${damage} damage but debuff of -${attacker.enduringEffects[0].debuff} reduced ${attack.name} attack to ${totalDamage}`);
     } else {
-    gameMessage(`${attacker.name} dealt ${totalDamage} points of damage with ${attack.name}`, true, true);
-    logMessage(`${getEntityEmoji(attacker, 'attack')} ${attacker.name} dealt ${totalDamage} damage with ${attack.name}`);
-  };
+        gameMessage(`${attacker.name} dealt ${totalDamage} points of damage with ${attack.name}`, true, true);
+        logMessage(`${getEntityEmoji(attacker, 'attack')} ${attacker.name} dealt ${totalDamage} damage with ${attack.name}`);
+    };
 
-  logMessage(`${getEntityEmoji(defender, 'health')} ${defender.name} has ${defender.health} health remaining`);
+    logMessage(`${getEntityEmoji(defender, 'health')} ${defender.name} has ${defender.health} health remaining`);
 
-  renderHeroButtons();
-  updateStats();
+    if (attacker.type === 'character') {
+        attacker.mana -= attack.manaCost;
+        logMessage(`${gameData.emoji.character.mana} ${attacker.name} has ${attacker.mana} mana remaining`)
+    };
+
+    renderHeroButtons();
+    updateStats();
 };
 function statusHandler(defender, attack) {
 
-
     if (attack.name !== 'None' && attack.name !== null && !defender.enduringEffects[0].active && defender.health > 0) {
         
-        const effect = attack.inflictingEffect[0];
+        const effect = attack.inflictingEffects[0];
 
         defender.enduringEffects[0] = {                     
             active: true,
@@ -814,31 +816,44 @@ function statusHandler(defender, attack) {
             debuff: effect.debuff,
             duration: effect.duration
         };
-        if (defender.enduringEffects[0].name !== 'None')
-        logMessage(`${getEntityEmoji(defender, 'effectActive')} ${defender.name} must endure ~${defender.enduringEffects[0].emoji}${defender.enduringEffects[0].name}~ effect`);
+        if (defender.enduringEffects[0].name !== 'None' && defender.enduringEffects[0].active)
+            logMessage(`${getEntityEmoji(defender, 'effectActive')} ${defender.name} must endure ~${defender.enduringEffects[0].emoji}${defender.enduringEffects[0].name}~ effect`);
     };
 };
-function effectTicker(entity) {
+function applyDamageEffect(group) {
+
+    for (const entity of group) {
     const effect = entity.enduringEffects[0];
 
-    if (effect.damage !== 0 && effect.active && entity.health > 0) {  
-        entity.health -= effect.damage;
-        effect.duration --;
+        if (effect.damage !== 0 && entity.health > 0) {  
+            entity.health -= effect.damage;
         
-        gameMessage(`<br><br><strong>~ ~ ${getEntityEmoji(entity, 'effectDamage')} Damage Effect ~ ~</strong><br>
-            ${entity.name} suffers ${effect.damage} points of damage from ${effect.name} effect`, true, true);
+            gameMessage(`<br><br><strong>~ ~ ${getEntityEmoji(entity, 'effectDamage')} Damage Effect ~ ~</strong><br>
+                ${entity.name} suffers ${effect.damage} points of damage from ${effect.name} effect`, true, true);
         
-        logMessage(`${getEntityEmoji(entity, 'effectDamage')} ${entity.name} took ${effect.damage} damage from effect`);
-        logMessage(`${getEntityEmoji(entity, 'health')} ${entity.name} has ${entity.health} health remaining`);
-    }
-    if (effect.debuff !== 0 && effect.active && entity.health > 0) {  
-        effect.duration --;
-    }
+            logMessage(`${getEntityEmoji(entity, 'effectDamage')} ${entity.name} took ${effect.damage} damage from ~${effect.emoji}${effect.name}~ effect`);
+            logMessage(`${getEntityEmoji(entity, 'health')} ${entity.name} has ${entity.health} health remaining`);
+        };
+
+        if (entity.health <= 0) {
+            entity.health = 0;
+            entity.alive = false;
+        };
+        if (effect.duration === 1) {
+        logMessage(`${getEntityEmoji(entity, 'effectCleared')} ${entity.name} is clear of ${effect.name} effect`);
+    };
+    };
+    updateStats();
+};
+function tickEffectDuration(group) {
+  for (const entity of group) {
+    const effect = entity.enduringEffects[0];
+
+    if (effect.active && entity.health > 0) {
+      effect.duration--;
+    };
 
     if (effect.duration <= 0 && effect.name !== null && effect.name !== 'None') {
-
-        logMessage(`${getEntityEmoji(entity, 'effectCleared')} ${entity.name} is clear of ${effect.name} effect`);
-
         effect.active = false;
         effect.name = null;
         effect.emoji = null;
@@ -851,8 +866,7 @@ function effectTicker(entity) {
         entity.health = 0;
         entity.alive = false;
     };
-
-    updateStats();
+  };
 };
 function checkDefeat(entity) {
     if (entity.health <= 0 || !entity.alive) {
@@ -898,22 +912,50 @@ function checkPartyWipe() {
     };
 };
 function round () {
+    //round start
+    displayStatusEffect(characterData, 'characterStatusEffect');
+    displayStatusEffect(monsterData, 'monsterStatusEffect');
     gameMessage(`<strong>~ ~${gameData.emoji.character.attack} Hero Attacks! ~ ~</strong><br>`, true, false)    
+    
+    //hero attack
     attack(characterData, monsterData, selectedAttack);
     checkDefeat(monsterData);
+
+    //apply effects to monster
     statusHandler(monsterData, selectedAttack);
-    effectTicker(characterData);
-    checkDefeat(characterData);
+    displayStatusEffect(monsterData, 'monsterStatusEffect');
+
+    //apply damage effect to character and tick duration for all characters
+    applyDamageEffect(gameData.characters);
+    tickEffectDuration(gameData.characters);
+
+    //check for character defeat by tick damage 
+    checkDefeat(gameData.characters);
+
+    //monster's turn to attack
     gameMessage(`<br><br><strong>~ ~${gameData.emoji.monster.attack} Monster Attacks! ~ ~</strong><br>`, true, true)
     attackRandomizer();
     attack(monsterData, characterData, randomAttack);
+
+    //check for character(s) defeat
     checkDefeat(characterData);
     checkPartyWipe();
+
+    //apply effects to character
     statusHandler(characterData, randomAttack);
     displayStatusEffect(characterData, 'characterStatusEffect');
-    effectTicker(monsterData);
-    displayStatusEffect(monsterData, 'monsterStatusEffect');
+
+    //apply damage effect to monster and tick duration
+    applyDamageEffect(gameData.monsters);
+    tickEffectDuration(gameData.monsters);
+    
+    //check for monster defeat by tick damage
     checkDefeat(monsterData);
+    
+    //round ending displays
+    attackButtonsContainer.style.display = 'none';
+    nextTurnBtn.style.display = 'block';
+    disableHeroButtons();
 };
 function reset() {
     //reset character and monster data
