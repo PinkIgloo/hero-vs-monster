@@ -22,15 +22,20 @@ html, body {
   --card-entity-bg: #d8d6d6;
 }
 body.dark-mode {
-  --border-color: #444;
-  --bg-color: #1e1e1e;
-  --text-color: #eaeaea;
+  --border-color: #217126aa;
+  --bg-color: #2a2c2a;
+  --text-color: #dedcdf;
   --button-bg: #225793;
   --button-text: white;
   --button-hover: #4a90e2;
   --card-bg: #2d1f23;
-  --card-game-bg: #340d18;
-  --card-entity-bg: #28202a;
+  --card-game-bg: #202a21;
+  --card-entity-bg: #3a1d40;
+}
+:is(html, body, .card, .card-entity, .game-panel, .game-interface,
+.game-message, .attack-buttons-container, .flavor, button,
+.battle-log, .battle-log-entry) {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 .hidden {
   display: none;
@@ -66,6 +71,7 @@ button {
   background-color: var(--button-bg);
   color: var(--button-text);
   font-weight: bold;
+  font-size: 1rem;
   cursor: pointer;
 }
 button:hover {
@@ -82,7 +88,6 @@ button:hover {
   max-height: 580px;
   padding: 0.25rem;
   margin: 0.25rem;
-
   justify-content:space-around;
 }
 /* Hero and Monster styles */
@@ -98,8 +103,14 @@ button:hover {
   background-color: var(--card-entity-bg);
   text-align: center;
 }
+  .entity-header{
+    margin-top: 0.25rem;
+    background-color: var(--card-game-bg);
+    text-shadow: 1px 1px 5px var(--button-hover),
+                 2px 2px var(--bg-color);
+  }
   .hero-button {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
   .button-row {
     min-height: 30px;
@@ -114,13 +125,16 @@ button:hover {
   .entity-image{
     width: 200px;
     height: auto;
+    border: 2px solid var(--border-color);
   }
   .flavor {
       width: 90%;
       box-sizing: border-box;
       padding: 0.5rem;
       margin: 0 auto;
-      border: 1px solid var(--border-color);
+      margin-top: 1rem;
+      border: 2px groove var(--border-color);
+      background-color: var(--card-bg);
       font-style: italic;
       text-align: center;
   }
@@ -159,10 +173,14 @@ button:hover {
   text-align: center;
 }
   .game-title{
+    margin-top: 0.5rem;
     padding: 0.5rem;
     border: 3px solid var(--border-color);
+    background-color: var(--card-bg);
     font-weight: bold;
     text-align: center;
+    text-shadow: 2px 2px 5px var(--button-hover),
+                 2px 2px var(--bg-color);
   }
   .player-message{
     max-width: 430px;
@@ -191,6 +209,7 @@ button:hover {
         text-align: left;
       }
         .welcome{
+          margin-top: 0.5rem;
           font-size: 1.2rem;
           font-weight: bolder;
           text-align: center;
@@ -204,6 +223,7 @@ button:hover {
         border: 1px solid var(--border-color);
         border-radius: 5px;
         background-color: var(--card-bg);
+        overflow-y: auto;
       }
 
       .attack-buttons-container{
@@ -228,13 +248,13 @@ button:hover {
           width: 220px;
           padding: 6px 12px;
           border: 1px solid var(--border-color);
-          background-color: var(--card-bg);
+          background-color: var(--card-entity-bg);
           color: var(--text-color);
           font-weight: bold;
           cursor: pointer;
         }
           .attack-button:hover {
-            background-color: var(--card-entity-bg);
+            background-color: var(--card-game-bg);
           }
           .attack-name {
             margin-bottom: 0.25rem;
