@@ -11,41 +11,80 @@
 
     <body>
         <button id="themeToggle">Light ~ Dark</button>
-        <main class="game-wrapper">
-            <section class="player-panel">
+        <!-- there will be a silly mode toggle here eventually! -->
+
+        <main class="card">
+            <section class="card-entity character">
                 <h2 id="characterName">Heroes</h2>
-                <div id="heroButtonsContainer" class="hero-button-row"></div>
-                <div id="characterStatusEffect" class="status-display"></div>
-                <img id="characterImage" src="images/startingPartyImage.png" alt="Select Character" width="200">
-                <p id="characterFlavor"></p>
-                <div id="statsDisplay" class="stats-row">
-                    <span id="characterHealth"></span>
-                    <span id="characterMana"></span>
+                <div id="buttonContainer" class="hero-button-row">
+                    <button id="mage" class="hero-button">Mage</button>
+                    <button id="warrior" class="hero-button">Warrior</button>
+                    <button id="rogue" class="hero-button">Rogue</button>
+                </div>
+                <div id="characterStatusEffect" class="effect-display"></div>
+                <img id="characterImage" src="images/startingPartyImage.png" alt="Select Character" class="entity-image">
+                <div id="characterFlavor" class="flavor">
+                    <p>A party of adventurers that came together over beer and danger. They each have their own flavor and together they are Neapolitan.</p>
+                </div>
+                <div id="characterStatsDisplay" class="stats-row">
+                    <div class="stat-block">
+                        <div id="characterHealthLabel" class="stats-label"></div>
+                        <div id="characterHealth" class="stats-value"></div>                        
+                    </div>
+                    <div class="stat-block">
+                        <div id="characterManaLabel" class="stats-label"></div>
+                        <div id="characterMana" class="stats-value"></div>
+                    </div>                    
                 </div>
             </section>
+
             <section class="game-panel">
-                <h1>Hero vs Monster</h1>
-                <div id="playerMessage" class="game-message">Ready to adventure? Select a hero and enter the dungeon to begin!</div>
-                <div id="gameMessage" class="game-panel-message"></div>
-                <div id="attackButtonsContainer"></div>
-                <p id="descriptionBox" class="status-description"></p>
-                <button id="nextTurnBtn" style="display: none;">▶️ Next Turn</button>
-                <button id="print" style="display: none;">Print Battle Log</button>
-                <button id="playAgain" style="display: none;">Play again?</button>
-                <section class="battle-log-section">
+                <h1 class="game-title">Hero vs Monster</h1>
+                
+                <div id="playerMessage" class="player-message"></div>
+
+                <div id="gameInterface" class="game-interface">
+                    <div id="startPanel" class="card-game start-panel">
+                        <h2 class="welcome">Welcome</h2>
+                    </div>
+                    <div id="gameMessagePanel" class="card-game game-message hidden"></div>
+                    <div id="attackInfo" class="card-game attack-options hidden">
+                        <div id="attackButtonsContainer" class="attack-buttons-container"></div>
+                        <div id="effectContainer" class="effect-container">
+                            <p id="descriptionBox" class="effect-description">text from JS</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-controls">
+                    <button id="nextTurnBtn" class="button hidden">▶️ Next Turn</button>
+                    <button id="printLog" class="button hidden">Print Battle Log</button>
+                    <button id="playAgain" class="button hidden">Play again?</button>
+                </div>
+
+                <div class="battle-log-section">
                     <button id="LogToggle">Show Battle Log</button>
-                    <div id="battleLog" class="battle-log" style="display: none;"></div>
-                </section>
+                    <div id="battleLog" class="battle-log hidden">
+                        Enter the dungeon to begin
+                    </div>
+                </div>
             </section>
-            <section class="computer-panel">
+
+            <section class="card-entity monster">
                 <h2 id="monsterName">Monster</h2>
-                <button id="enterDungeonBtn">Enter Dungeon</button>
-                <div id="monsterStatusEffect" class="status-display"></div>
-                <img id="monsterImage" src="images/dungeonDoor.png" alt="Monster appears" width = "200">
-                <p id="monsterFlavor"></p>
-                <p id="monsterStatusEffect"></p>
-                <div id="statsDisplay" class="stats-row">
-                    <span id="monsterHealth"></span>
+                <div id="buttonContainer">
+                    <button id="enterDungeonBtn">Enter Dungeon</button>
+                </div>                
+                <div id="monsterStatusEffect" class="effect-display"></div>
+                <img id="monsterImage" src="images/dungeonDoor.png" alt="Monster appears" class="entity-image">
+                <div id="monsterFlavor" class="flavor">
+                    <p>A mysterious door that hums and sparkles seep through the cracks. Curious...but exciting and possibly, very possibly - deadly!</p>
+                </div>
+                <div id="monsterStatsDisplay" class="stats-row">
+                    <div class="stat-block">
+                        <div id="monsterHealthLabel" class="stats-label"></div>
+                        <div id="monsterHealth" class="stats-value"></div>                        
+                    </div>                   
                 </div>
             </section>
         </main>
