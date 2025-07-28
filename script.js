@@ -472,7 +472,7 @@ const gameData = {
     },
     effectDescriptions: {
         burn: "Monster takes 2 damage for 3 turns.",
-        poison: "Monster takes 2 damage for 2 turns.",
+        poison: "Monster takes 3 damage for 2 turns.",
         confused: "Monster does 5 less damage for 2 turns",
         bleed: "Monster takes 2 damage for 3 turns",
         none: "No status effect from this attack."
